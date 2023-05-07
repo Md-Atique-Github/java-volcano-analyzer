@@ -1,3 +1,4 @@
+//import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,11 +19,11 @@ public class VolcanoAnalyzerTests {
         va = new VolcanoAnalyzer();
         va.loadVolcanoes(Optional.empty());
     }
-
+// 1
     @Test
-    public void volcanoExists() {
+   public void volcanoExists() {
         //Setup
-        Volcano classUnderTest = new Volcano();
+       Volcano classUnderTest = new Volcano();
 
         //Execute
 
@@ -31,135 +32,131 @@ public class VolcanoAnalyzerTests {
         assertNotNull(classUnderTest);
         //Teardown
     }
-
-    @Test
+// 2
+      @Test
     public void loadVolcanoes() throws IOException, URISyntaxException {
         //Setup
-        Integer expected = 804;
+     Integer expected = 804;
 
         //Execute
-        Integer actual = va.numbVolcanoes();
+     Integer actual = va.numbVolcanoes();
 
         //Assert
         assertEquals(expected, actual, "should have 804 volcanoes");
 
         //Teardown
     }
-
-    // @Test
-    // public void eruptedInEighties() {
+// 3
+     @Test
+     public void eruptedInEighties() {
     //     //Setup
-    //     Integer expected = 40;
+         Integer expected = 40;
 
     //     //Execute
-    //     Integer actual = va.eruptedInEighties().size();
+         Integer actual = va.eruptedInEighties().size();
 
     //     //Assert
-    //     assertEquals(expected, actual, "should have 40 volcanoes");
+         assertEquals(expected, actual, "should have 40 volcanoes");
 
     //     //Teardown
-    // }
-
-    // @Test
-    // public void highVEI() {
+     }
+// 4
+     @Test
+     public void highVEI() {
     //     //Setup
-    //     String[] expected = { "Macauley Island", "Kikai", "Masaya", "Pago", "Taal", "Pinatubo", "Long Island", "Black Peak", "St. Helens", "Veniaminof", "Aniakchak", "Santorini", "Taupo", "Pago", "Pinatubo", "Raoul Island", "Okmok", "Apoyeque", "Ambrym", "Bona-Churchill", "Taupo", "Ksudach", "Ilopango", "Rabaul", "Pago", "Bona-Churchill", "Dakataua", "Ceboruco", "Changbaishan", "Quilotoa", "Kuwae", "Bardarbunga", "Huaynaputina", "Long Island", "Tambora", "Krakatau", "Santa Maria", "Novarupta", "Pinatubo" };
+         String[] expected = { "Macauley Island", "Kikai", "Masaya", "Pago", "Taal", "Pinatubo", "Long Island", "Black Peak", "St. Helens", "Veniaminof", "Aniakchak", "Santorini", "Taupo", "Pago", "Pinatubo", "Raoul Island", "Okmok", "Apoyeque", "Ambrym", "Bona-Churchill", "Taupo", "Ksudach", "Ilopango", "Rabaul", "Pago", "Bona-Churchill", "Dakataua", "Ceboruco", "Changbaishan", "Quilotoa", "Kuwae", "Bardarbunga", "Huaynaputina", "Long Island", "Tambora", "Krakatau", "Santa Maria", "Novarupta", "Pinatubo" };
 
     //     //Execute
-    //     String[] actual = va.highVEI();
+         String[] actual = va.highVEI();
 
     //     //Assert
-    //     assertEquals( expected.length, actual.length, "should have 39 volcanoes");
-    //     assertArrayEquals(expected, actual, "should have the correct volcanoes");
+         assertEquals( expected.length, actual.length, "should have 39 volcanoes");
+         assertArrayEquals(expected, actual, "should have the correct volcanoes");
 
     //     //Teardown
-    // }
-
-    // @Test
-    // public void mostDeadly() {
+     }
+// 5
+    @Test
+     public void mostDeadly() {
     //     //Setup
-    //     Volcano expected = new Volcano();
-    //     expected.setYear(450);
-    //     expected.setTsu("");
-    //     expected.setEQ("");
-    //     expected.setName("Ilopango");
-    //     expected.setLocation("El Salvador");
-    //     expected.setCountry("El Salvador");
-    //     expected.setLatitude(13.672);
-    //     expected.setLongitude(-89.053);
-    //     expected.setElevation(450);
-    //     expected.setType("Caldera");
-    //     expected.setVEI(6);
-    //     expected.setAgent("");
-    //     expected.setDEATHS("30000");
+         Volcano expected = new Volcano();
+         expected.setYear(450);
+         expected.setTsu("");
+         expected.setEQ("");
+         expected.setName("Ilopango");
+         expected.setLocation("El Salvador");
+         expected.setCountry("El Salvador");
+         expected.setLatitude(13.672);
+         expected.setLongitude(-89.053);
+         expected.setElevation(450);
+         expected.setType("Caldera");
+         expected.setVEI(6);
+         expected.setAgent("");
+         expected.setDEATHS("30000");
+         //Execute
+         Volcano actual = va.mostDeadly();
+         //Assert
+         assertEquals( expected.getYear(), actual.getYear(), "should have correct year");
+         assertEquals( expected.getTsu(), actual.getTsu(), "should have correct Tsu");
+         assertEquals(expected.getEQ(), actual.getEQ(), "should have correct EQ" );
+         assertEquals( expected.getName(), actual.getName(),"should have correct Name" );
+         assertEquals( expected.getLocation(), actual.getLocation(), "should have correct Location");
+         assertEquals( expected.getCountry(), actual.getCountry(), "should have correct Country");
+         assertEquals( expected.getLatitude(), actual.getLatitude(), "should have correct Latitude");
+         assertEquals( expected.getLongitude(), actual.getLongitude(), "should have correct Longitude");
+         assertEquals( expected.getElevation(), actual.getElevation(),"should have correct Elevation" );
+         assertEquals( expected.getType(), actual.getType(), "should have correct Type");
+         assertEquals( expected.getVEI(), actual.getVEI(), "should have correct VEI");
+         assertEquals( expected.getAgent(), actual.getAgent(), "should have correct Agent");
+         assertEquals( expected.getDEATHS(), actual.getDEATHS(), "should have correct DEATHS");
+         //Teardown
+     }
+// 6
+     @Test
+     public void causedTsunami() {
+    //     //Setup
+         double expected = 17;
 
     //     //Execute
-    //     Volcano actual = va.mostDeadly();
+         double actual = va.causedTsunami();
 
     //     //Assert
-    //     assertEquals( expected.getYear(), actual.getYear(), "should have correct year",);
-    //     assertEquals( expected.getTsu(), actual.getTsu(), "should have correct Tsu");
-    //     assertEquals(expected.getEQ(), actual.getEQ(), "should have correct EQ" );
-    //     assertEquals( expected.getName(), actual.getName(),"should have correct Name" );
-    //     assertEquals( expected.getLocation(), actual.getLocation(), "should have correct Location");
-    //     assertEquals( expected.getCountry(), actual.getCountry(), "should have correct Country");
-    //     assertEquals( expected.getLatitude(), actual.getLatitude(), "should have correct Latitude");
-    //     assertEquals( expected.getLongitude(), actual.getLongitude(), "should have correct Longitude");
-    //     assertEquals( expected.getElevation(), actual.getElevation(),"should have correct Elevation" );
-    //     assertEquals( expected.getType(), actual.getType(), "should have correct Type");
-    //     assertEquals( expected.getVEI(), actual.getVEI(), "should have correct VEI");
-    //     assertEquals( expected.getAgent(), actual.getAgent(), "should have correct Agent");
-    //     assertEquals( expected.getDEATHS(), actual.getDEATHS(), "should have correct DEATHS");
-    //     //Teardown
-    // }
+         assertEquals( expected, actual, .1, "should be about 17.0 percent");
 
-    // @Test
-    // public void causedTsunami() {
+    //     //Teardown
+     }
+// 7
+     @Test
+     public void mostCommonType() {
     //     //Setup
-    //     double expected = 17;
+         String expected = "Stratovolcano";
 
     //     //Execute
-    //     double actual = va.causedTsunami();
+         String actual = va.mostCommonType();
 
     //     //Assert
-    //     assertEquals( expected, actual, .1, "should be about 17.0 percent");
+         assertEquals( expected, actual, "should be Stratovolcano");
 
     //     //Teardown
-    // }
-
-    // @Test
-    // public void mostCommonType() {
+     }
+// 8
+     @Test
+     public void eruptionsByCountry() {
     //     //Setup
-    //     String expected = "Stratovolcano";
-
-    //     //Execute
-    //     String actual = va.mostCommonType();
-
-    //     //Assert
-    //     assertEquals( expected, actual, "should be Stratovolcano");
-
-    //     //Teardown
-    // }
-
-    // @Test
-    // public void eruptionsByCountry() {
-    //     //Setup
-    //     int expected1 = 47;
-    //     int expected2 = 189;
-    //     int expected3 = 0;
-
-    //     //Execute
-    //     int actual1 = va.eruptionsByCountry("United States");
-    //     int actual2 = va.eruptionsByCountry("Indonesia");
-    //     int actual3 = va.eruptionsByCountry("Zimbabwe");
-
-    //     //Assert
-    //     assertEquals(expected1, actual1, "should be 47 eruptions in United States");
-    //     assertEquals( expected2, actual2, "should be 189 eruptions in Indonesia");
-    //     assertEquals( expected3, actual3, "should be 0 eruptions in Zimbabwe");
-    //     //Teardown
-    // }
-
+         int expected1 = 47;
+         int expected2 = 189;
+         int expected3 = 0;
+         //Execute
+         int actual1 = va.eruptionsByCountry("United States");
+         int actual2 = va.eruptionsByCountry("Indonesia");
+         int actual3 = va.eruptionsByCountry("Zimbabwe");
+         //Assert
+         assertEquals(expected1, actual1, "should be 47 eruptions in United States");
+         assertEquals( expected2, actual2, "should be 189 eruptions in Indonesia");
+         assertEquals( expected3, actual3, "should be 0 eruptions in Zimbabwe");
+         //Teardown
+     }
+// 9
     // @Test
     // public void averageElevation() {
     //     //Setup
@@ -173,7 +170,7 @@ public class VolcanoAnalyzerTests {
 
     //     //Teardown
     // }
-
+// 10
     // @Test
     // public void volcanoTypes() {
     //     //Setup
@@ -187,7 +184,7 @@ public class VolcanoAnalyzerTests {
 
     //     //Teardown
     // }
-
+// 11
     // @Test
     // public void percentNorth() {
     //     //Setup
@@ -201,7 +198,7 @@ public class VolcanoAnalyzerTests {
 
     //     //Teardown
     // }
-
+// 12
     // @Test
     // public void manyFilters() {
     //     //Setup
@@ -215,7 +212,7 @@ public class VolcanoAnalyzerTests {
 
     //     //Teardown
     // }
-
+// 13
     // @Test
     // public void elevatedVolcanoes() {
     //     //Setup
@@ -230,7 +227,7 @@ public class VolcanoAnalyzerTests {
 
     //     //Teardown
     // }
-
+// 14
     // @Test
     // public void topAgentsOfDeath() {
     //     //Setup
