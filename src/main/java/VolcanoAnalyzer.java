@@ -4,6 +4,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +82,72 @@ public class VolcanoAnalyzer {
                              .filter(v -> country.equals(v.getCountry()))
                              .count();
     }
+
+    public double averageElevation() {
+        //Execute
+        double average = volcanos.stream()
+                                 .mapToDouble(Volcano::getElevation)
+                                 .average()
+                                 .orElse(0.0);
+        return average;
+    }
+
+    public String[] volcanoTypes() {
+        String[] volcanoTypes = volcanos.stream()
+                                         .map(Volcano::getType)
+                                         .collect(Collectors.toSet())
+                                         .toArray(String[]::new);
+        Arrays.sort(volcanoTypes);
+        return volcanoTypes;
+    
+    }
+
+    public double percentNorth() {
+        double numVolcanoes = (double) volcanos.size();
+        double numNorth = volcanos.stream()
+                                  .filter(v -> v.getLatitude() > 0)
+                                  .count();
+        return (numNorth / numVolcanoes) * 100;
+    }
+
+    public String[] manyFilters() {
+        String[] volcanoes = volcanos.stream()
+                .filter(v -> v.getCountry().equals("Indonesia"))
+                .filter(v -> v.getElevation() > 1500)
+                .filter(v -> v.getLatitude() < 0)
+                .map(Volcano::getName)
+                .toArray(String[]::new);
+        return volcanoes;
+    }
+
+    public String[] elevatedVolcanoes(int i) {
+        String[] elevatedVolcanoes = volcanos.stream()
+                .filter(v -> v.getElevation() > i)
+                .map(Volcano::getName)
+                .toArray(String[]::new);
+        return elevatedVolcanoes;
+    }
+
+    public String[] topAgentsOfDeath() {
+    return volcanoes.stream()
+        .flatMap(v -> v.getDeaths().entrySet().stream())
+        .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.summingInt(Map.Entry::getValue)))
+        .entrySet().stream()
+        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+        .limit(5)
+        .map(Map.Entry::getKey)
+        .toArray(String[]::new);
+}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 	
     
     

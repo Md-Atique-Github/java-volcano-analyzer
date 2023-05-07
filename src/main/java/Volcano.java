@@ -1,3 +1,5 @@
+import java.util.Map;
+
 public class Volcano {
     private Integer Year;
     private String Tsu;
@@ -115,5 +117,13 @@ public class Volcano {
 
     public void setDEATHS(String DEATHS) {
         this.DEATHS = DEATHS;
+    }
+
+    public int getLastEruptionYear() {
+        return 0;
+    }
+
+    public Map<String, Long> getDeaths() {
+        return null;
     }
 }
