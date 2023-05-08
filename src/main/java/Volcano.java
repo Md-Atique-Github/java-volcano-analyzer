@@ -123,7 +123,4 @@ public class Volcano {
         return 0;
     }
 
-    public Map<String, Long> getDeaths() {
-        return null;
-    }
 }

@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+
 
 public class VolcanoAnalyzer {
     private List<Volcano> volcanos;
@@ -94,10 +96,11 @@ public class VolcanoAnalyzer {
 
     public String[] volcanoTypes() {
         String[] volcanoTypes = volcanos.stream()
-                                         .map(Volcano::getType)
-                                         .collect(Collectors.toSet())
-                                         .toArray(String[]::new);
-        Arrays.sort(volcanoTypes);
+                                        .map(Volcano::getType)
+                                        .distinct()
+                                        .collect(Collectors.toList())
+                                        .toArray(new String[0]);
+        //Arrays.sort(volcanoTypes);
         return volcanoTypes;
     
     }
@@ -112,8 +115,8 @@ public class VolcanoAnalyzer {
 
     public String[] manyFilters() {
         String[] volcanoes = volcanos.stream()
-                .filter(v -> v.getCountry().equals("Indonesia"))
-                .filter(v -> v.getElevation() > 1500)
+                .filter(v -> v.getYear() > 1800)
+                .filter(v -> v.getVEI() == 5)
                 .filter(v -> v.getLatitude() < 0)
                 .map(Volcano::getName)
                 .toArray(String[]::new);
@@ -128,15 +131,11 @@ public class VolcanoAnalyzer {
         return elevatedVolcanoes;
     }
 
-    public String[] topAgentsOfDeath() {
-    return volcanoes.stream()
-        .flatMap(v -> v.getDeaths().entrySet().stream())
-        .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.summingInt(Map.Entry::getValue)))
-        .entrySet().stream()
-        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-        .limit(5)
-        .map(Map.Entry::getKey)
-        .toArray(String[]::new);
+    public void topAgentsOfDeath() {
+        // Stream<Volcano> deaths = 
+        volcanos.stream()
+                .sorted()
+                .forEach(item -> System.out.println(item.getDEATHS()));
 }
 
     
